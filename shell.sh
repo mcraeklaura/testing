@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ `git branch --list t` ]
+if [ `git branch | grep "t"` ]
 then
    git branch -D t
    git push origin --delete t
