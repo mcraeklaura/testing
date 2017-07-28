@@ -1,15 +1,15 @@
 #!/bin/bash
 BRANCH=t
 HAS_NO_PULL=false
-if [ !`git branch -a | egrep "^[[:space:]]+${BRANCH}$"` ]
+if [ `git branch -a | egrep "^[[:space:]]+${BRANCH}$"` ]
 then
-   # If the branch doesn't exist, make it again.
-   echo "Making new branch"
-   git checkout -b ${BRANCH}
-   HAS_NO_PULL=true
-else
    echo "Checking into the branch"
    git checkout ${BRANCH}
+else
+   # If the branch doesn't exist, make it again.
+   echo "Making new branch"
+   HAS_NO_PULL=true
+   git checkout -b ${BRANCH}
 fi
 
 # Insert changes here
