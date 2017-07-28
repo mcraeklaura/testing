@@ -3,7 +3,7 @@ if [ `git branch -a | egrep "^[[:space:]]+t$"` ]
 then
    echo "Deleting t"
    git branch -D t
-   #git push origin --delete t
+   git push origin --delete t
 fi
 git branch t
 git checkout t
