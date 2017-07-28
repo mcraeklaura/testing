@@ -7,7 +7,7 @@ then
 fi
 git branch t
 git checkout t
-echo "heeeeeeey" > test.txt
+echo "sdfsfdheeeeeeey" > test.txt
 git add --all
-#git commit -m "automated push"
-#git push -u origin t
+git commit -m "automated push"
+git push -u origin t
