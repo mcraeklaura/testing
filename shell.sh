@@ -20,7 +20,7 @@ git add --all
 git commit -m "Making changes to CPU/MEM data"
 git push -u origin ${BRANCH}
 
-if [ HAS_NO_PULL -eq 1 ]
+if [ $HAS_NO_PULL -eq 1 ]
 then
    echo "Making a new pull request"
    # Make new pull request if there isn't already one
