@@ -1,6 +1,6 @@
 #!/bin/bash
 BRANCH=t
-HAS_NO_PULL="false"
+HAS_NO_PULL=0
 if [ `git branch -a | egrep "^[[:space:]]+${BRANCH}$"` ]
 then
    echo "Checking into the branch"
@@ -8,7 +8,7 @@ then
 else
    # If the branch doesn't exist, make it again.
    echo "Making new branch"
-   HAS_NO_PULL="true"
+   HAS_NO_PULL=1
    git checkout -b ${BRANCH}
 fi
 
@@ -20,7 +20,7 @@ git add --all
 git commit -m "Making changes to CPU/MEM data"
 git push -u origin ${BRANCH}
 
-if [ HAS_NO_PULL=="true" ]
+if [ HAS_NO_PULL -eq 1 ]
 then
    echo "Making a new pull request"
    # Make new pull request if there isn't already one
