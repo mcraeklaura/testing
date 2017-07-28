@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ `git branch | grep "t"` ]
+if [ `git branch | grep "^[[:space:]]+t$"` ]
 then
    git branch -D t
    git push origin --delete t
