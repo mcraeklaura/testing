@@ -1,6 +1,10 @@
 #!/bin/bash
 BRANCH=t
 HAS_NO_PULL=0
+
+# Getting rid of any remote origin leftovers
+git remote prune origin
+
 if [ `git branch -a | egrep "^[[:space:]]+${BRANCH}$"` ]
 then
    echo "Checking into the branch"
