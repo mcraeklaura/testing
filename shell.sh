@@ -10,6 +10,7 @@ then
       # Branch doesn't exist remotely
       git push origin ${BRANCH}
       HAS_NO_PULL=1
+   fi
 else
    # If the branch doesn't exist, make it again.
    echo "Making new branch"
