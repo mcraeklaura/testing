@@ -6,6 +6,8 @@ then
    # If the branch doesn't exist, make it again.
    git checkout -b ${BRANCH}
    HAS_PULL=1
+else
+   git checkout ${BRANCH}
 fi
 
 # Insert changes here
