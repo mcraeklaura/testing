@@ -2,7 +2,7 @@
 if [ `git branch --list t` ]
 then
    git branch -D t
-   git push origin --delete t
+   # git push origin --delete t
 fi
 git branch t
 git checkout t
