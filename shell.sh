@@ -5,6 +5,11 @@ if [ `git branch -a | egrep "^[[:space:]]+${BRANCH}$"` ]
 then
    echo "Checking into the branch"
    git checkout ${BRANCH}
+   if [ `git branch -a | egrep "remotes/origin/${BRANCH}$"` ]
+   then
+      # Branch doesn't exist remotely
+      git push origin ${BRANCH}
+      HAS_NO_PULL=1
 else
    # If the branch doesn't exist, make it again.
    echo "Making new branch"
