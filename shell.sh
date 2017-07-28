@@ -32,7 +32,7 @@ then
    echo "Making a new pull request"
    # Make new pull request if there isn't already one
    curl -u mcraeklaura:lionpath11 -X POST -H 'Content-type: application/json' \
-   --data '{"title":"BOT Make changes to FILES","body":"Please pull this in!","head":"mcraeklaura:'+$BRANCH+'","base":"master"}' \
+   --data '{"title":"BOT Make changes to FILES","body":"Please pull this in!","head":"mcraeklaura:t","base":"master"}' \
    https://api.github.com/repos/mcraeklaura/testing/pulls
 fi
 
