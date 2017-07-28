@@ -1,15 +1,32 @@
 #!/bin/bash
-if [ `git branch -a | egrep "^[[:space:]]+t$"` ]
+BRANCH=t
+HAS_NO_PULL=0
+if [ `git branch -a | egrep "^[[:space:]]+${BRANCH}$"` ]
 then
-   echo "Deleting t"
-   git branch -D t
-   git push origin --delete t
+   echo "Checking into the branch"
+   git checkout ${BRANCH}
+else
+   # If the branch doesn't exist, make it again.
+   echo "Making new branch"
+   HAS_NO_PULL=1
+   git checkout -b ${BRANCH}
 fi
-git branch t
-git checkout t
+
+# Insert changes here
 echo $(date) > test.txt
+echo "Changing stuffs"
+
 git add --all
-git commit -m "automated push"
-git push -u origin t
-curl -u mcraeklaura:lionpath11 -X POST -H 'Content-type: application/json' --data '{"title":"Amazing new feature","body":"Please pull this in!","head":"mcraeklaura:t","base":"master"}' https://api.github.com/repos/mcraeklaura/testing/pulls
+git commit -m "Making changes to CPU/MEM data"
+git push -u origin ${BRANCH}
+
+if [ $HAS_NO_PULL -eq 1 ]
+then
+   echo "Making a new pull request"
+   # Make new pull request if there isn't already one
+   curl -u mcraeklaura:lionpath11 -X POST -H 'Content-type: application/json' \
+   --data '{"title":"BOT Make changes to FILES","body":"Please pull this in!","head":"mcraeklaura:'+$BRANCH+'","base":"master"}' \
+   https://api.github.com/repos/mcraeklaura/testing/pulls
+fi
+
 git checkout master
