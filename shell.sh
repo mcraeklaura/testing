@@ -8,6 +8,7 @@ then
    if ! [ `git branch -a | egrep "remotes/origin/${BRANCH}$"` ]
    then
       # Branch doesn't exist remotely
+      echo "Branch does not exist remotely"
       git push origin ${BRANCH}
       HAS_NO_PULL=1
    fi
